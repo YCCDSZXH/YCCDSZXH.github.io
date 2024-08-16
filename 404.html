@@ -12,23 +12,16 @@
       data-domain="blog.yccd.cc"
       src="https://plausible.yccd.cc/js/script.js"
     ></script>
-  <link rel="preload" href="/./assets/dioxus/blog_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-            <link rel="preload" href="/./assets/dioxus/blog.js" as="script">
-            </head>
+  </head>
   <body>
     <div id="main"></div>
-  <script>
-            // We can't use a module script here because we need to start the script immediately when streaming
-            import("/./assets/dioxus/blog.js").then(
-                ({ default: init }) => {
-                init("/./assets/dioxus/blog_bg.wasm").then((wasm) => {
-                    if (wasm.__wbindgen_start == undefined) {
-                    wasm.main();
-                    }
-                });
-                }
-            );
-            </script>
-            
-            </body>
+  <script type="module">
+    import init from "/./assets/dioxus/blog.js";
+    init("/./assets/dioxus/blog_bg.wasm").then(wasm => {
+      if (wasm.__wbindgen_start == undefined) {
+        wasm.main();
+      }
+    });
+    </script>
+    </body>
 </html>
